@@ -22,3 +22,8 @@ nano .env
 npm start
 ```
 The application will be launched by [Nodemon](https://nodemon.com) so it will be restarted automatically on any file changes.
+
+
+## Testing
+- Import postman collection [MongoDBPlayground](https://github.com/tariqkhan051/freestyle-playground/blob/main/mongodb-atlas-crud/MongoDbPlayground.postman_collection.json)
+- Run collection
