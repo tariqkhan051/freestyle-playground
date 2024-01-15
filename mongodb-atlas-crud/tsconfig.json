@@ -63,6 +63,14 @@
     "./src/**/*",
   ],
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "./coverage", 
+    "./build", 
+    "__tests__", 
+    "jest.config.js"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  }
 }
