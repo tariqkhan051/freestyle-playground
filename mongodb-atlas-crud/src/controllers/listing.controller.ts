@@ -66,9 +66,9 @@ const getAllListings = async (req: Request, res: Response) => {
 
     const { minimumNumberOfBedrooms, minimumNumberOfBathrooms, maximumNumberOfResults } = req.query;
     const filter = {
-        minimumNumberOfBedrooms: +minimumNumberOfBedrooms,
-        minimumNumberOfBathrooms: +minimumNumberOfBathrooms,
-        maximumNumberOfResults: +maximumNumberOfResults
+        minimumNumberOfBedrooms: +(minimumNumberOfBedrooms || 1),
+        minimumNumberOfBathrooms: +(minimumNumberOfBathrooms || 1),
+        maximumNumberOfResults: +(maximumNumberOfResults || 1)
     }
     const result = await getAll(filter);
 
@@ -145,7 +145,7 @@ const deleteListingsScrapedBeforeDate = async (req: Request, res: Response) => {
     if (!date) {
         return res.status(400).json({ message: 'The field date is required.' });
     }
-    
+
     const result = await deleteAllBeforeDate(date);
 
     return result ?
