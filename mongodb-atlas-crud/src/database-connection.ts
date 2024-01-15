@@ -1,15 +1,15 @@
-// import mongoose, { ConnectOptions } from 'mongoose';
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 import { createListing, createMultipleListings } from './data/create';
 import { findOneListingByName, findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews } from './data/get';
 import { updateListingByName, upsertListingByName, updateAllListingsToHavePropertyType } from './data/update';
 import { deleteListingByName, deleteListingsScrapedBeforeDate } from './data/delete';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+import { ListingInput } from './models/listing.model';
 
-// mongoose.Promise = global.Promise;
-// dotenv.config();
+dotenv.config();
 
-// const { DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER } = process.env;
+const { DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER } = process.env;
 
 // const connectToDatabase = async (): Promise<void> => {
 //     const options: ConnectOptions = { 
@@ -19,9 +19,7 @@ import { deleteListingByName, deleteListingsScrapedBeforeDate } from './data/del
 //     await mongoose.connect(`mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, options);
 // };
 
-
-import { MongoClient, ServerApiVersion } from 'mongodb';
-const uri = "mongodb+srv://tariqkhan051:WJRLddJ1rZaYmTHa@cluster0.13y6q9d.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -41,12 +39,18 @@ async function run() {
         //await client.db("admin").command({ ping: 1 });
         //console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-        //Sample Database
+        // Sample Database
         const database = client.db('sample_mflix');
+
+        // Get Sample Collection
         const movies = database.collection('movies');
+        
         // Query for a movie that has the title 'Back to the Future'
         const query = { title: 'Back to the Future' };
+        
+        // Execute Query
         const movie = await movies.findOne(query);
+        
         console.log(movie);
     } finally {
         // Ensures that the client will close when you finish/error
@@ -58,7 +62,7 @@ async function run() {
 //run().catch(console.dir);
 
 // create single listing
-async function create(newListing): Promise<boolean> {
+async function create(newListing: ListingInput): Promise<boolean> {
     try {
         await client.connect();
         await createListing(client, newListing);
@@ -75,7 +79,7 @@ async function create(newListing): Promise<boolean> {
 
 
 // create multiple listings
-async function createMultiple(newListings): Promise<boolean> {
+async function createMultiple(newListings: ListingInput[]): Promise<boolean> {
     try {
         await client.connect();
         await createMultipleListings(client, newListings);
