@@ -98,7 +98,7 @@ docker push {docker_hub_username}/{public_repository_name}:latest
    
 - Verify the public API access
   - Update _baseUrl_ in Postman collection to 
-  ...```http://{{PUBLIC_IP}}:{{CONTAINER_PORT}}/```
+  ```http://{{PUBLIC_IP}}:{{CONTAINER_PORT}}```
   - Run Postman Collection
 </details>
 
