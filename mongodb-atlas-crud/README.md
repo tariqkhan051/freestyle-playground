@@ -92,6 +92,7 @@ docker push {docker_hub_username}/{public_repository_name}:latest
   - Go to **Clusters**
   - Click on the cluster name you created
   - Go to **Tasks** tab and click on the task name
+    
     ![Tasks tab](images/image-5.png)
   - Under **Configuration** copy Public IP (_Example: 1.2.3.4_)
    
