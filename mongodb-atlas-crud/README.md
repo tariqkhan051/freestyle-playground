@@ -70,7 +70,7 @@ docker push {docker_hub_username}/{public_repository_name}:latest
   - Click on **Elastic Container Service**
   - Click on **Create Cluster**
     ![Create a Ckuster](images/image.png)
-  - Click on "Tasks definitions" in left side bar
+  - Click on **Tasks definitions** in left side bar
   - Create new task definition (_A task definition is a blueprint that describes how to run a containerized application_)
     ![Create a Task](images/image-1.png)
   - Under **Task definition configuration** Give your task definition a name
@@ -81,7 +81,7 @@ docker push {docker_hub_username}/{public_repository_name}:latest
   - Click **Create** button to create the task definition
   
 - Create a Service (_Service is a long-running task that represents a set of identical tasks that are run on your cluster_)
-  - Once the task is created, click on **Deploy>_Create a Service_**
+  - Once the task is created, click on **Deploy>_Create Service_**
     ![Create a Service](images/image-3.png)
   - Under **Environment**, Select the _Existing cluster_
   - Under **Deployment Configuration**, provide a _Service name_
